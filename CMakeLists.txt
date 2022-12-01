@@ -15,6 +15,8 @@ set(Sources
     src/Base64.cpp
 )
 
+option(${This}_BUILD_TESTING "Configure testing" ON)
+
 add_library(${This} STATIC ${Sources} ${Headers})
 set_target_properties(${This} PROPERTIES
     FOLDER Libraries
@@ -22,4 +24,6 @@ set_target_properties(${This} PROPERTIES
 
 target_include_directories(${This} PUBLIC include)
 
-add_subdirectory(test)
+if (${This}_BUILD_TESTING)
+    add_subdirectory(test)
+endif()
